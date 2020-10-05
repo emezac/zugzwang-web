@@ -3,7 +3,7 @@
 ## Description
 
 ## Get project source
-`$ git clone git@github.com:emezac/zchess.git`
+`$ git clone  https://github.com/emezac/zugzwang-web.git`
 
 ## Environment setup
 Install `python 3.8` if you don't have it, and then do:
@@ -11,6 +11,7 @@ Install `python 3.8` if you don't have it, and then do:
 `pipenv install`
 
 #Please change this line on main.py
+
 FILE_SYSTEM_ROOT = "/home/emeza/code/python/tarea1/position"
 accordingly your environment
 
@@ -19,3 +20,4 @@ accordingly your environment
 
 Then you can see the app  at [http://localhost:8080/]
 
+You can see how is working here: https://www.youtube.com/watch?v=f9Lk1M_jA8o
