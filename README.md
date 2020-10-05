@@ -1,2 +1,21 @@
-# zugzwang-web
-Zugzwang is a situation found in chess and other turn-based games wherein one player is put at a disadvantage because of their obligation to make a move; in other words, the fact that the player is compelled to move means that their position will become significantly weaker
+# Zugzwang Web 
+
+## Description
+
+## Get project source
+`$ git clone git@github.com:emezac/zchess.git`
+
+## Environment setup
+Install `python 3.8` if you don't have it, and then do:
+`pip install pipenv`
+`pipenv install`
+
+#Please change this line on main.py
+FILE_SYSTEM_ROOT = "/home/emeza/code/python/tarea1/position"
+accordingly your environment
+
+## Start web service
+`./start.sh`
+
+Then you can see the app  at [http://localhost:8080/]
+
