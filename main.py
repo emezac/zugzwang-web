@@ -24,6 +24,19 @@ FILE_SYSTEM_ROOT = "/Users/enrique/code/work/python/chess/web/tarea1/position"
 def index():
     return render_template('index.html')
 
+@app.route('/getAnalitics/<fenfile>', methods=['GET'])
+def analyze(fenfile):
+    title = 'Analyze Board'
+    newfen = get_file_content(fenfile).rstrip()
+    fontFile = convertToFontFile(newfen)
+    img = chess_position_using_font(newfen, "fonts/chess_merida_unicode.ttf", 48)
+    img2 = img.convert('RGB')
+    nal = random.randint(0, 1022)
+    name= 'boardpos_'+str(nal)+'_'+datetime.now().strftime('%Y%m%d-%H%M%S')+'.jpg'
+    img3 = img2.save("static/img/"+name)
+    data =name
+    return render_template('analyze.html', title=title, data = data )
+
 @app.route('/getPosition/<fenfile>', methods=['GET'])
 def results(fenfile):
     title = 'Result'
@@ -339,4 +352,4 @@ class FenParser():
     return int(num_str)*" "
 
 if __name__ == '__main__':
-    app.run(port=8080, debug=True)
+    app.run(port=8626, debug=True)

@@ -45,6 +45,11 @@ function readPosition() {
     newWindow=window.open("/getPosition/"+txt,"_blank", "toolbar=no,scrollbars=no,resizable=no,top=500,left=500,width=800,height=400")
 }
 
+function analyzePosition() {
+    var txt=document.getElementById("position").value;
+    newWindow=window.open("/getAnalitics/"+txt,"_blank", "toolbar=no,scrollbars=no,resizable=no,top=500,left=500,width=480,height=480")
+}
+
 var board = Chessboard('myBoard', {
   draggable: true,
   dropOffBoard: 'trash',
@@ -57,4 +62,5 @@ $('#flipOrientationBtn').on('click', board.flip)
 $('#clearBtn').on('click', board.clear)
 $('#saveBtn').on('click', saveFile)
 $('#readBtn').on('click', readPosition)
-$('#loadBtn').on('click', board.clear, loadPosition)
+$('#loadBtn').on('click', loadPosition)
+$('#anaBtn').on('click', analyzePosition)
