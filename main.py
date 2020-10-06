@@ -352,4 +352,4 @@ class FenParser():
     return int(num_str)*" "
 
 if __name__ == '__main__':
-    app.run(port=8626, debug=True)
+    app.run(port=8080, debug=True)

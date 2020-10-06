@@ -20,4 +20,9 @@ accordingly your environment
 
 Then you can see the app  at [http://localhost:8080/]
 
+
 You can see how is working here: https://www.youtube.com/watch?v=f9Lk1M_jA8o
+
+Analyze board:
+Tools for analyzing chess games
+https://youtu.be/JseRoZnd-Os
