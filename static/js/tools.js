@@ -1,5 +1,7 @@
 // Only executed our code once the DOM is ready.
 	window.onload = function() {
+
+
 /* Arrow Class extends Group */
 
 const Arrow = paper.Group.extend({
@@ -259,9 +261,65 @@ const Arrow = paper.Group.extend({
     return tool
   }
 
+  function BetterArrow (mouseDownPoint) {
+      this.start = mouseDownPoint;
+      this.headLength = 30;
+      this.tailLength = 21;
+      this.headAngle = 35;
+      this.tailAngle = 110
+  }
+
+  //Better Arrow
+  BetterArrow.prototype.draw = function (point) {
+    var end = point;
+    var arrowVec = this.start.subtract(end);
+
+    // parameterize {headLength: 20, tailLength: 6, headAngle: 35, tailAngle: 110}
+    // construct the arrow
+    var arrowHead = arrowVec.normalize(this.headLength);
+    var arrowTail = arrowHead.normalize(this.tailLength);
+
+    var p3 = end;                  // arrow point
+
+    var p2 = end.add(arrowHead.rotate(-this.headAngle));   // leading arrow edge angle
+    var p4 = end.add(arrowHead.rotate(this.headAngle));    // ditto, other side
+
+    var p1 = p2.add(arrowTail.rotate(this.tailAngle));     // trailing arrow edge angle
+    var p5 = p4.add(arrowTail.rotate(-this.tailAngle));    // ditto
+
+    // specify all but the last segment, closed does that
+    this.path = new paper.Path(this.start, p1, p2, p3, p4, p5);
+    this.path.closed = true;
+
+    this.path.strokeWidth = 2
+    this.path.strokColor = 'black'
+    this.path.fillColor = '#CCCC00'
+
+    return this.path
+  }
+
+  const toolBArrow = () => {
+    const tool = new paper.Tool()
+    tool.name = 'toolBArrow'
+    var current
+
+    let path
+
+    tool.onMouseDown = e => {
+      path = new BetterArrow(e.point)
+    }
+
+    tool.onMouseDrag = e => {
+     if (current) current.remove()
+      current = path.draw(e.point)
+    }
+
+    return tool
+  }
+
   // Construct a Toolstack, passing your Tools
 
-  const toolStack = new ToolStack([toolRed, toolYellow, toolGreen, toolCircle, toolSquare, toolCross, toolFCircle])
+  const toolStack = new ToolStack([toolRed, toolBArrow, toolGreen, toolCircle, toolSquare, toolCross, toolFCircle])
 
   // Activate a certain Tool
 
